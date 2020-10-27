@@ -1,0 +1,24 @@
+//Query for appInsights.trackTrace({message: "New Record Created From Wizard",properties:{UserId:parseUserId,Entity:result.entityType,RecordId:result.id,ControlId:"oppwizard.createOpportunity"}})
+traces
+| where message =="New Record Created From Wizard"
+| order by timestamp desc
+| extend cd = parse_json(customDimensions)
+| project timestamp, message, cd.ControlId, cd.Entity, cd.RecordId, cd.UserId
+| order by timestamp desc
+
+//Query for appInsights.trackEvent({name:"Wizard_Record_Create", properties:{UserId:parseUserId,Entity:result.entityType,RecordId:result.id,ControlId:"oppwizard.createOpportunity"}
+customEvents
+| where name == "Wizard_Record_Create"
+| extend cd = parse_json(customDimensions)
+| project timestamp, name, cd.ControlId, cd.Entity, cd.RecordId, cd.UserId
+| order by timestamp desc
+
+//Query for page loading of the HTML Web Resource new_SimpleOpportunityCreate
+pageViews
+| where name == "Opportunity Create Page"
+| order by timestamp desc
+
+//Query for exceptions on the HTML Web Resource new_SimpleOpportunityCreate
+exceptions 
+| join (pageViews | where name == "Opportunity Create Page") on operation_Id
+| order by timestamp desc
