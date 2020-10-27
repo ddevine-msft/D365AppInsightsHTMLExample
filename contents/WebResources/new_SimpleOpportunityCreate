@@ -1,0 +1,74 @@
+<html><!-- 
+
+ This Sample Code is provided for the purpose of illustration only and is not intended to be used in a production environment.  
+ THIS SAMPLE CODE AND ANY RELATED INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, 
+ INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.  We grant You 
+ a nonexclusive, royalty-free right to use and modify the Sample Code and to reproduce and distribute the object code form of the
+ Sample Code, provided that You agree: (i) to not use Our name, logo, or trademarks to market Your software product in which 
+ the Sample Code is embedded; (ii) to include a valid copyright notice on Your software product in which the Sample Code is 
+ embedded; and (iii) to indemnify, hold harmless, and defend Us and Our suppliers from and against any claims or lawsuits, 
+ including attorneys� fees, that arise or result from the use or distribution of the Sample Code.
+ 
+ Please note: None of the conditions outlined in the disclaimer above will supersede the terms and conditions contained within 
+ the Premier Customer Services Description.
+ 
+This is taken directly from Microsoft Documentation for Application Insights for Snippet Based Setup
+Reference https://docs.microsoft.com/en-us/azure/azure-monitor/app/javascript#snippet-based-setup
+--><head>
+    <script src="../webresources/new_AppInsightsSnippet.js"></script>
+<meta></head>
+<body>
+  <title>Opportunity Create Page</title>
+  Opp Name: <input type="text" id="oppName" value="Input Opp Name"><br><br>
+  <button id:"oppwizard.createopportunity"="" onclick="createOpportunity()">Create Record</button><br><br><b>
+  Create Result: </b><input type="text" id="newOppId" value=""><br>
+  
+  <p style="font-family: undefined;">Provide an Opportunity name and click 'Create Record'</p>
+  
+  <script>
+  function createOpportunity()
+  {
+      //clear old result id
+      var newOppName = document.getElementById("newOppId").value = "";
+      //New Record Name
+      var newOppName = document.getElementById("oppName").value;
+  
+      // define the data to create new opportunity
+      var data =
+          {
+              "name": newOppName
+          }
+  
+      // create opportunity record
+      parent.Xrm.WebApi.createRecord("opportunity", data).then(
+          function success(result) {
+              // perform operations on record creation
+
+              document.getElementById("newOppId").value = result.id;
+              parseUserId = parent.Xrm.Utility.getGlobalContext().getUserId().split('{')[1].split('}')[0];
+              
+              //https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#trackevent
+              //Calls to TrackEvent show up in the "customEvents" table
+              appInsights.trackEvent({
+                  name:"Wizard_Record_Create",
+                  properties:{UserId:parseUserId,Entity:result.entityType,RecordId:result.id,ControlId:"oppwizard.createOpportunity"}
+              });
+              //https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#tracktrace
+              //Calls to TrackTrace show up in the "traces" table
+              appInsights.trackTrace({
+                  message: "New Record Created From Wizard",
+                  properties:{UserId:parseUserId,Entity:result.entityType,RecordId:result.id,ControlId:"oppwizard.createOpportunity"}
+              })
+
+          },
+          function (error) {
+              //https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#trackexception
+              //calls to trackException show up in the "exceptions" table.
+              //The SDKs catch many exceptions automatically, so you don't always have to call TrackException explicitly.
+              appInsights.trackException(error);
+          }
+      );
+  }
+  </script>
+ 
+</body></html>

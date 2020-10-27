@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityMaps xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityMap>
+    <EntitySource>lead</EntitySource>
+    <EntityTarget>opportunity</EntityTarget>
+    <AttributeMaps>
+      <AttributeMap>
+        <AttributeSource>estimatedamount</AttributeSource>
+        <AttributeTarget>estimatedvalue</AttributeTarget>
+      </AttributeMap>
+    </AttributeMaps>
+  </EntityMap>
+</EntityMaps>

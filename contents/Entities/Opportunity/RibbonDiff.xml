@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="new.opportunity.Button2.Button.CustomAction" Location="Mscrm.HomepageGrid.opportunity.MainTab.Management.Controls._children" Sequence="55">
+      <CommandUIDefinition>
+        <Button Command="new.opportunity.Command0.Command" Id="new.opportunity.Button2.Button" LabelText="$LocLabels:new.opportunity.Button2.Button.LabelText" Sequence="55" TemplateAlias="o2" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="new.opportunity.Command0.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="openOppHtmlPage" Library="$webresource:new_SimpleOpportuinityCreateScript.js" />
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="new.opportunity.DisplayRule0.DisplayRule">
+        <CrmClientTypeRule Type="Web" Default="true" InvertResult="false" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="new.opportunity.EnableRule0.EnableRule">
+        <CrmClientTypeRule Type="Web" Default="true" InvertResult="false" />
+      </EnableRule>
+    </EnableRules>
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="new.opportunity.Button2.Button.LabelText">
+      <Titles>
+        <Title description="Opp Wizard" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>
