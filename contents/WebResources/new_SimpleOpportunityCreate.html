@@ -16,7 +16,7 @@ This is taken directly from Microsoft Documentation for Application Insights for
 Reference https://docs.microsoft.com/en-us/azure/azure-monitor/app/javascript#snippet-based-setup
 --><head>
     <script src="../webresources/new_AppInsightsSnippet.js"></script>
-<meta></head>
+<meta><meta></head>
 <body>
   <title>Opportunity Create Page</title>
   Opp Name: <input type="text" id="oppName" value="Input Opp Name"><br><br>
@@ -45,19 +45,21 @@ Reference https://docs.microsoft.com/en-us/azure/azure-monitor/app/javascript#sn
               // perform operations on record creation
 
               document.getElementById("newOppId").value = result.id;
-              parseUserId = parent.Xrm.Utility.getGlobalContext().getUserId().split('{')[1].split('}')[0];
+			  var globalContext = parent.Xrm.Utility.getGlobalContext();
+			  var orgUrl = globalContext.getClientUrl();
+              var parseUserId = globalContext.getUserId().split('{')[1].split('}')[0];
               
               //https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#trackevent
               //Calls to TrackEvent show up in the "customEvents" table
               appInsights.trackEvent({
                   name:"Wizard_Record_Create",
-                  properties:{UserId:parseUserId,Entity:result.entityType,RecordId:result.id,ControlId:"oppwizard.createOpportunity"}
+                  properties:{UserId:parseUserId,Entity:result.entityType,RecordId:result.id,ControlId:"oppwizard.createOpportunity",OrgUrl:orgUrl}
               });
               //https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#tracktrace
               //Calls to TrackTrace show up in the "traces" table
               appInsights.trackTrace({
                   message: "New Record Created From Wizard",
-                  properties:{UserId:parseUserId,Entity:result.entityType,RecordId:result.id,ControlId:"oppwizard.createOpportunity"}
+                  properties:{UserId:parseUserId,Entity:result.entityType,RecordId:result.id,ControlId:"oppwizard.createOpportunity",OrgUrl:orgUrl}
               })
 
           },

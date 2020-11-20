@@ -3,14 +3,14 @@ traces
 | where message =="New Record Created From Wizard"
 | order by timestamp desc
 | extend cd = parse_json(customDimensions)
-| project timestamp, message, cd.ControlId, cd.Entity, cd.RecordId, cd.UserId
+| project timestamp, message, cd.ControlId, cd.Entity, cd.RecordId, cd.UserId,cd.OrgUrl
 | order by timestamp desc
 
 //Query for appInsights.trackEvent({name:"Wizard_Record_Create", properties:{UserId:parseUserId,Entity:result.entityType,RecordId:result.id,ControlId:"oppwizard.createOpportunity"}
 customEvents
 | where name == "Wizard_Record_Create"
 | extend cd = parse_json(customDimensions)
-| project timestamp, name, cd.ControlId, cd.Entity, cd.RecordId, cd.UserId
+| project timestamp, name, cd.ControlId, cd.Entity, cd.RecordId, cd.UserId, cd.OrgUrl
 | order by timestamp desc
 
 //Query for page loading of the HTML Web Resource new_SimpleOpportunityCreate
@@ -23,12 +23,12 @@ exceptions
 | join (pageViews | where name == "Opportunity Create Page") on operation_Id
 | order by timestamp desc
 
-//Opportunity creates by User
+//Opportunity creates by User by OrgUrl
 customEvents
 | where name == "Wizard_Record_Create"
 | extend cd = parse_json(customDimensions)
-| project timestamp, name, cd.ControlId, cd.Entity, cd.RecordId, cd.UserId
-| summarize count(cd_RecordId) by tostring(cd_UserId)
+| project timestamp, name, cd.ControlId, cd.Entity, cd.RecordId, cd.UserId, cd.OrgUrl
+| summarize count(cd_RecordId) by tostring(cd_UserId),tostring(cd_OrgUrl)
 
 //Number of Opportunity records create in each PageView
 pageViews

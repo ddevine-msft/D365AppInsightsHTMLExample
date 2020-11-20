@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.1.0.23759" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.1.0.24647" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>D365AppInsightsHTMLExample</UniqueName>
     <LocalizedNames>
       <LocalizedName description="D365 AppInsights HTML Example" languagecode="1033" />
     </LocalizedNames>
     <Descriptions>
-      <Description description="The example is intended to be an implementation of JavaScript Snippet based usage for Application Insights.&#xA;Example adds an &quot;Opp Wizard&quot; button to the Opportunity UCI entity ribbon. &#xA;The button opens a simple custom HTML page for creating a opportunity. &#xA;&#xA;IMPORTANT: Line 12 of web resource new_AppInsightsSnippet.js will need to be modified by adding instrumentationKey from your application insights resource -&gt; https://docs.microsoft.com/en-us/azure/azure-monitor/app/create-new-resource&#xA;&#xA;Reference :&#xA;              https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#trackevent&#xA;              Calls to TrackEvent show up in the &quot;customEvents&quot; table&#xA;&#xA;              https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#tracktrace&#xA;              Calls to TrackTrace show up in the &quot;traces&quot; table&#xA;&#xA;              https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#trackexception&#xA;              calls to trackException show up in the &quot;exceptions&quot; table." languagecode="1033" />
+      <Description description="The is intended to be an example implementation of JavaScript Snippet based usage for Application Insights&#xA;&#x9;Reference: https://docs.microsoft.com/en-us/azure/azure-monitor/app/javascript#snippet-based-setup&#xA;&#xA;The solution creates a Model Drive App named “”. &#xA;The App has only Opportunity Entity with a customized with &quot;Opp Wizard&quot; button. &#xA;The &quot;Opp Wizard&quot; button opens a simple custom HTML Web Resource page used to create a new Opportunity record. &#xA;Application Insights TrackEvent and TrackTrace monitoring methods implemented on the HTML Page.&#xA;&#xA;Reference :&#xA;              https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#trackevent&#xA;              Calls to TrackEvent show up in the &quot;customEvents&quot; table&#xA;&#xA;              https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#tracktrace&#xA;              Calls to TrackTrace show up in the &quot;traces&quot; table&#xA;&#xA;              https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#trackexception&#xA;              calls to TrackException show up in the &quot;exceptions&quot; table." languagecode="1033" />
     </Descriptions>
     <Version>1.0.0.0</Version>
     <Managed>2</Managed>
     <Publisher>
-      <UniqueName>Cr66f69</UniqueName>
+      <UniqueName>appinsightsexample</UniqueName>
       <LocalizedNames>
-        <LocalizedName description="CDS Default Publisher" languagecode="1033" />
+        <LocalizedName description="App Insights Example" languagecode="1033" />
       </LocalizedNames>
       <Descriptions />
       <EMailAddress xsi:nil="true"></EMailAddress>
       <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
-      <CustomizationPrefix>crd7f</CustomizationPrefix>
-      <CustomizationOptionValuePrefix>22889</CustomizationOptionValuePrefix>
+      <CustomizationPrefix>new</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>10000</CustomizationOptionValuePrefix>
       <Addresses>
         <Address>
           <AddressNumber>1</AddressNumber>
-          <AddressTypeCode xsi:nil="true"></AddressTypeCode>
+          <AddressTypeCode>1</AddressTypeCode>
           <City xsi:nil="true"></City>
           <County xsi:nil="true"></County>
           <Country xsi:nil="true"></Country>
@@ -39,7 +39,7 @@
           <PostalCode xsi:nil="true"></PostalCode>
           <PostOfficeBox xsi:nil="true"></PostOfficeBox>
           <PrimaryContactName xsi:nil="true"></PrimaryContactName>
-          <ShippingMethodCode xsi:nil="true"></ShippingMethodCode>
+          <ShippingMethodCode>1</ShippingMethodCode>
           <StateOrProvince xsi:nil="true"></StateOrProvince>
           <Telephone1 xsi:nil="true"></Telephone1>
           <Telephone2 xsi:nil="true"></Telephone2>
@@ -51,7 +51,7 @@
         </Address>
         <Address>
           <AddressNumber>2</AddressNumber>
-          <AddressTypeCode xsi:nil="true"></AddressTypeCode>
+          <AddressTypeCode>1</AddressTypeCode>
           <City xsi:nil="true"></City>
           <County xsi:nil="true"></County>
           <Country xsi:nil="true"></Country>
@@ -67,7 +67,7 @@
           <PostalCode xsi:nil="true"></PostalCode>
           <PostOfficeBox xsi:nil="true"></PostOfficeBox>
           <PrimaryContactName xsi:nil="true"></PrimaryContactName>
-          <ShippingMethodCode xsi:nil="true"></ShippingMethodCode>
+          <ShippingMethodCode>1</ShippingMethodCode>
           <StateOrProvince xsi:nil="true"></StateOrProvince>
           <Telephone1 xsi:nil="true"></Telephone1>
           <Telephone2 xsi:nil="true"></Telephone2>
@@ -81,15 +81,28 @@
     </Publisher>
     <RootComponents>
       <RootComponent type="1" schemaName="opportunity" behavior="1" />
-      <RootComponent type="50" schemaName=":RibbonDiffXml" behavior="0" />
       <RootComponent type="61" schemaName="new_AppInsightsSnippet.js" behavior="0" />
       <RootComponent type="61" schemaName="new_SimpleOpportuinityCreateScript.js" behavior="0" />
-      <RootComponent type="61" schemaName="new_SimpleOpportunityCreate" behavior="0" />
+      <RootComponent type="61" schemaName="new_SimpleOpportunityCreate.html" behavior="0" />
+      <RootComponent type="62" schemaName="new_AppInsightsExampleApp" behavior="0" />
+      <RootComponent type="80" schemaName="new_AppInsightsExampleApp" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
         <Required key="0" type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)" />
         <Dependent key="0" type="1" schemaName="opportunity" displayName="Opportunity" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="0" type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)" />
+        <Dependent key="1" type="62" schemaName="new_AppInsightsExampleApp" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="0" type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)" />
+        <Dependent key="2" type="80" schemaName="new_AppInsightsExampleApp" displayName="App Insights Example App" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="3" type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)" />
+        <Dependent key="2" type="80" schemaName="new_AppInsightsExampleApp" displayName="App Insights Example App" />
       </MissingDependency>
     </MissingDependencies>
   </SolutionManifest>

@@ -21,7 +21,7 @@
 var openOppHtmlPage = function () {
     var  pageInput = {
             pageType: "webresource",
-            webresourceName: "new_SimpleOpportunityCreate",
+            webresourceName: "new_SimpleOpportunityCreate.html",
             //data: 
         };
 
