@@ -5,14 +5,14 @@ The example is intended to be an example implementation of JavaScript Snippet ba
 
 The solution adds an "Opp Wizard" button to the Opportunity UCI entity ribbon. 
 The button opens a simple custom HTML page for creating a opportunity. 
-There are a couple monitoring methods implemented on the HTML Page
+TrackEvent and trackTrace monitoring methods implemented on the HTML Page.
 
 CONTENTS
 =============
 /solutions - Managed and unmanaged solutions with the example
 /contents  - Extracted solution SolutionPackager 
 		Reference: https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/developer/compress-extract-solution-file-solutionpackager
-/queries   - Examples queried for viewing results in app insights
+/queries   - Examples queried for viewing results in app insights for TrackEvent, trackTrace and Exceptions
 
 IMPORTANT CHANGE NEEDED: 
 Line 12 of web resource new_AppInsightsSnippet.js will need to be modified by adding instrumentationKey from your application insights resource -> https://docs.microsoft.com/en-us/azure/azure-monitor/app/create-new-resource
