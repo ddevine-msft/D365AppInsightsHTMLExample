@@ -15,10 +15,26 @@ customEvents
 
 //Query for page loading of the HTML Web Resource new_SimpleOpportunityCreate
 pageViews
-| where name == "Opportunity Create Page"
+| where name == "Opportunity Create Page" //"name" comes from <title> in the HTML page
 | order by timestamp desc
 
 //Query for exceptions on the HTML Web Resource new_SimpleOpportunityCreate
 exceptions 
 | join (pageViews | where name == "Opportunity Create Page") on operation_Id
 | order by timestamp desc
+
+//Opportunity creates by User
+customEvents
+| where name == "Wizard_Record_Create"
+| extend cd = parse_json(customDimensions)
+| project timestamp, name, cd.ControlId, cd.Entity, cd.RecordId, cd.UserId
+| summarize count(cd_RecordId) by tostring(cd_UserId)
+
+//Number of Opportunity records create in each PageView
+pageViews
+| join kind=inner 
+(customEvents 
+| where name == "Wizard_Record_Create"
+) 
+on $left.operation_Id==$right.operation_Id
+| summarize count() by operation_Id
